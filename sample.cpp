@@ -1,6 +1,7 @@
 #include<CL/sycl.hpp>
 #include<array>
 using namespace std;
+namespace sycl = cl::sycl;
 
 constexpr int arr_size = 1024;
 
