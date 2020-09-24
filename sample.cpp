@@ -12,12 +12,12 @@ int main()
     for(int i = 0; i < arr_size; i++)
         a_arr[i] = b_arr[i] = c_arr[i] = i;
     
-    auto platforms = sycl::platform::get_platform();
+    auto platforms = sycl::platform::get_platforms();
 
     for(auto &platform: platforms)
     {
         cout << "Platform:" << platform.get_info<sycl::info::platform::name>() << endl;
-        auto devices = platform.get.devices();
+        auto devices = platform.get_devices();
         for(auto &device: devices)
             cout << "Device:" << device.get_info<sycl::info::device::name>() < endl;
     }
