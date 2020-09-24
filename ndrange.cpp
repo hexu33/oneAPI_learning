@@ -2,9 +2,10 @@
 #include<iostream>
 
 using namespace cl::sycl;
+using namespace std;
 
-constexpr N = 6;
-constexpr M = 2;
+constexpr int N = 6;
+constexpr int M = 2;
 
 int main()
 {
@@ -19,12 +20,12 @@ int main()
         bufacc[ind[0]][ind[1]] = ind[0] + ind[1];
         });
     });
-    auto bufacc1 = buf.get_access(access::mode::read)();
+    auto bufacc1 = buf.get_access<access::mode::read>();
     for(int i = 0; i < N; i++)
     {
         for(int j = 0; j < N; j++)
             std::cout << bufacc1[i][j] << "\t";
-        std::cout << endl;
+        cout << "\n";
     }
     return 0;
 }
