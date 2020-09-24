@@ -13,7 +13,7 @@ class Vassign{
     sycl::accessor<T, 1, sycl::access::mode::read_write, sycl::access::target::global_buffer> access_;
 
     public:
-    Vassign(T val, sycl::accessor<Y, 1, sycl::accessor::modfe::read_write, sycl::access::target::global_buffer>& access)
+    Vassign(T val, sycl::accessor<Y, 1, sycl::accessor::mode::read_write, sycl::access::target::global_buffer>& access)
     : val_(val), access_(access){}
 
     void operator()(sycl::id<1> idx) {access_[idx] = idx[0] + val_;}
@@ -26,7 +26,7 @@ void UseSingleTask(array<int, arr_size>& a){
 
     q.submit([&](sycl::handler& h){
         auto a_in = a_buf.get_access<sycl::access::mode::write>(h);
-        h.single_task([=]() {a_in[0] = -1;})
+        h.single_task([=]() {a_in[0] = -1;});
     });
 }
 
